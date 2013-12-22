@@ -16,8 +16,8 @@ class Model_Main extends Model
 			$to = $max_items * $_GET['page'];
 			$from = $to - $max_items;
 		}
-
-		$db = new PDO('mysql:host=127.0.0.1;dbname=testdb;charset=utf8', 'root');
+		global $db_conf;
+		$db = new PDO($db_conf['db_url'], $db_conf['user'], $db_conf['pass']);
 		try {
 			$query = "SELECT * FROM employees ORDER BY eid LIMIT " . $from . ", " . $to;
 		    $stmt = $db->query($query);
